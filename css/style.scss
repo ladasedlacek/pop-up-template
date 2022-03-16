@@ -1,0 +1,560 @@
+/*!
+ *
+ *
+ *  Pop Up - OnePlus 9 / 9 Pro - Alza.cz
+ *
+ *   
+ *  Autorem souboru je Ladislav Sedláček - ladislav.sedlacek2@alza.cz
+ *  V případě úprav se na něj neváhejte obrátit.
+ *
+ *
+ */
+
+// *** FONTS
+@import url('https://fonts.googleapis.com/css?family=Poppins:700|Roboto:400,500,700&display=swap&subset=latin-ext');
+
+// *** VARIABLES - FONTS
+$fontRoboto: 'Roboto',
+sans-serif;
+$fontPoppins: 'Poppins',
+sans-serif;
+
+// *** VARIABLES - COLORS SATELLITES
+$colorAlza: #00275b;
+$colorMedia: #0094e7;
+$colorToys: #fd7528;
+$colorBeauty: #c7b276;
+$colorMaxi: #e9242e;
+$colorSport: #a1c900;
+$colorHobby: #764510;
+$colorAutomoto: #262f38;
+$colorPet: #cb8f10;
+
+// *** VARIABLES - COLORS BLACK & WHITE
+$colorWhite: #fff;
+$colorGrey0: #f8f8f8;
+$colorGrey1: #f4f5f5;
+$colorGrey3: #e0e0e0;
+$colorGrey4: #c6c6c6;
+$colorGrey5: #a4a4a4;
+$colorGrey6: #212121;
+$colorBlack: #000;
+
+// *** VARIABLES - COLORS BLUE
+$colorBlueLight: #ECF5FE;
+$colorBlueSecondary: #0094E7;
+$colorBluePrimaryLight: #1653A4;
+$colorBluePrimary: #00275B;
+
+// *** VARIABLES - COLORS GREEN
+$colorGreenLight: #F2FDE5;
+$colorGreenPrimary: #A1C900;
+$colorGreenPrimaryDark: #5c7e10;
+
+// *** VARIABLES - COLORS YELLOW
+$colorYellowLight: #FFF9D7;
+$colorYellow: #FFD538;
+$colorYellowDiscount: #FDF988;
+
+// *** VARIABLES - COLORS GOLD
+$colorGoldPrimary: #B7A265;
+
+// *** VARIABLES - COLORS ORANGE
+$colorOrangeLight: #FFF3EC;
+$colorOrangePrimaryLight: #F29400;
+$colorOrangePrimary: #FD7528;
+
+// *** VARIABLES - COLORS RED
+$colorRedLight: #FFEEEE;
+$colorRedPrimaryLight: #E9242E;
+$colorRedPrimary: #C91F28;
+$colorRedPremium: #AF1528;
+
+// *** VARIABLES - COLORS BROWN
+$colorBrownLight: #FAF6F2;
+$colorBrownPrimaryLight: #916a3f;
+$colorBrownPrimary: #764510;
+
+// *** VARIABLES - COLORS GREY
+$colorGreyPrimaryLight: #4F5B68;
+$colorGreyPrimary: #262F38;
+
+// *** VARIABLES - COLORS FOR BUTTONS
+$colorBtn: (alza:$colorAlza,
+	media:$colorMedia,
+	toys:$colorToys,
+	beauty:$colorBeauty,
+	maxi:$colorMaxi,
+	sport:$colorSport,
+	hobby:$colorHobby,
+	automoto:$colorAutomoto,
+	pet:$colorPet,
+	white:$colorWhite,
+	grey:$colorGrey1);
+
+// *** VARIABLES - COLORS SATELLITES - FOR BTN BACKGROUND HOVER
+$colorPercentageBtnHover: 6%;
+$colorPercentageBtnActive: 15%;
+
+// *** MIXINS
+@mixin transition($args: all 333ms ease-in-out) {
+	transition: $args;
+	// USAGE @include transition();
+}
+
+@mixin border($radius) {
+	border-radius: $radius + px;
+	// USAGE @include border(4);
+}
+
+@mixin box-sizing($box-model) {
+	box-sizing: $box-model;
+	// USAGE @include box-sizing(border-box);
+}
+
+@mixin font-size($size, $base: 16) {
+	font-size: $size + px;
+	font-size: ($size / $base) * 1rem;
+	// USAGE @include font-size(16);
+}
+
+@mixin abs-pos ($top: auto, $right: auto, $bottom: auto, $left: auto) {
+	top: $top + px;
+	right: $right + px;
+	bottom: $bottom + px;
+	left: $left + px;
+	position: absolute;
+	// USAGE @include abs-pos(10, 10, 10, 10);
+}
+
+/* #alzaDialog>.close {
+	background: url(https://i.alza.cz/Foto/or/popup/alzabox/img/i-cross.svg);
+
+	&:hover {
+		background: url(https://i.alza.cz/Foto/or/popup/alzabox/img/i-cross.svg);
+	}
+} */
+
+// *** ALZA - 4 COLUMNS LAYOUT
+#or-popup {
+	&.popup {
+		font-family: $fontRoboto;
+		width: 100%;
+		width: 750px;
+		margin: 0 auto;
+		@include font-size(16);
+		position: relative;
+		z-index: 1;
+		background: rgb(245,246,247);
+		background: linear-gradient(335deg, rgba(245,246,247,1) 0%, rgba(239,239,239,1) 100%);
+		@include box-sizing(border-box);
+		padding: 50px;
+		overflow: hidden;
+		@include border(5);
+
+		*,
+		*:after,
+		*:before {
+			@include box-sizing(border-box);
+			padding: 0;
+			margin: 0;
+		}
+
+		.popup-img {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			bottom: 0px;
+			margin: auto;
+			z-index: 1;
+		}
+
+		.popup-content {
+			max-width: 56%;
+
+			.pop-logo{
+				width: 31px;
+				height: 30px;
+			}
+
+			h2 {
+				font-family: $fontRoboto;
+				color: $colorAlza;
+				@include font-size(34);
+				font-weight: 700;
+				line-height: 1.25;
+				margin: 20px 0 0 0;
+
+				span {
+					font-weight: 700;
+				}
+			}
+
+			p.or-p--large {
+				margin: 15px 0 30px 0;
+				max-width: 100%;
+				color: #212121;
+				@include font-size(16);
+				line-height: 1.5;
+			}
+
+			p.nonstop {
+				margin: 0 0 30px 0;
+				max-width: 100%;
+				color: $colorSport;
+				@include font-size(16);
+				font-weight: 700;
+				line-height: 1.5;
+				position: relative;
+				padding: 0 0 0 30px;
+
+				&::before {
+					content: "";
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					left: 0;
+					margin: auto;
+					width: 16px;
+					height: 16px;
+					@include border(8);
+					background: $colorSport;
+					box-shadow: 0 0 0 0 rgba(92, 126, 16, 1);
+					transform: scale(1);
+					animation: pulse 1.5s infinite;
+				}
+			}
+
+			&-btns {
+				img {
+					margin: 0 0 0 25px;
+				}
+			}
+		}
+
+		// HEADLINES SETTINGS
+		h1,
+		h2,
+		h3,
+		h4,
+		h5 {
+			font-family: $fontPoppins;
+			font-weight: 700;
+			line-height: 1.25;
+		}
+
+		// PARAGRAPH SETTINGS
+		p {
+			font-family: $fontRoboto;
+			font-weight: 400;
+
+			&.or-p {
+				&--large {
+					@include font-size(16);
+					line-height: 1.75;
+				}
+
+				&--normal {
+					@include font-size(14);
+					line-height: 1.5;
+				}
+
+				&--small {
+					@include font-size(12);
+					line-height: 1.25;
+				}
+			}
+		}
+
+		// *** BUTTONS
+		// USAGE:
+		// <a href="#" class="or-btn or-btn--sport or-btn--large">
+		//     <span class="or-btn__inner">
+		//         <span class="or-btn__inner-text">Text odkazu</span>
+		//     </span>
+		// </a>
+		.or-btn {
+			box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .15);
+			position: relative;
+			display: inline-block;
+			text-decoration: none;
+			z-index: 1;
+			@include transition();
+			@include border(4);
+
+			&__inner {
+				position: relative;
+				overflow: hidden;
+				display: block;
+				@include border(4);
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: center;
+				align-content: stretch;
+				align-items: center;
+				@include transition();
+
+				&-text {
+					color: #fff;
+					overflow: hidden;
+					line-height: 1;
+					position: relative;
+				}
+			}
+
+			&:hover {
+				box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.3);
+			}
+
+			// BUTTON SIZE
+			&--small {
+				.or-btn__inner {
+					padding: 0 15px;
+					height: 32px;
+
+					&-text {
+						@include font-size(14);
+						line-height: 1.1;
+						font-weight: 500;
+					}
+
+					&-icon {
+						position: relative;
+						width: 20px;
+						height: 20px;
+						fill: $colorWhite;
+
+						&--left {
+							margin: 0 10px 0 0;
+						}
+
+						&--right {
+							margin: 0 0 0 10px;
+						}
+					}
+				}
+			}
+
+			&--normal {
+				.or-btn__inner {
+					padding: 0 15px;
+					height: 42px;
+
+					&-text {
+						@include font-size(14);
+						line-height: 1.1;
+						font-weight: 500;
+					}
+
+					&-icon {
+						position: relative;
+						width: 20px;
+						height: 20px;
+						fill: $colorWhite;
+
+						&--left {
+							margin: 0 10px 0 0;
+						}
+
+						&--right {
+							margin: 0 0 0 10px;
+						}
+					}
+				}
+			}
+
+			&--large {
+				.or-btn__inner {
+					padding: 0 25px;
+					height: 60px;
+
+					&-text {
+						@include font-size(20);
+						line-height: 1.1;
+						font-weight: 500;
+					}
+
+					&-icon {
+						position: relative;
+						width: 25px;
+						height: 25px;
+						fill: $colorWhite;
+
+						&--left {
+							margin: 0 10px 0 0;
+						}
+
+						&--right {
+							margin: 0 0 0 10px;
+						}
+					}
+				}
+			}
+
+			&--full {
+				min-width: 166px;
+
+				&-left {
+					.or-btn__inner {
+						display: flex;
+						flex-direction: row;
+						flex-wrap: nowrap;
+						justify-content: flex-start;
+						align-content: stretch;
+						align-items: center;
+					}
+
+				}
+
+				&-between {
+					.or-btn__inner {
+						display: flex;
+						flex-direction: row;
+						flex-wrap: nowrap;
+						justify-content: space-between;
+						align-content: stretch;
+						align-items: center;
+					}
+				}
+			}
+
+			// BUTTON COLORS
+			@each $theme,
+			$color in $colorBtn {
+				&--#{$theme} {
+					.or-btn__inner {
+						background: $color;
+
+						// DARK TEXT FOR white OR grey BUTTONS
+						@if ($theme==white) or ($theme==grey) {
+							&-text {
+								color: $colorGrey6;
+							}
+
+							&-icon {
+								fill: $colorGrey6;
+							}
+						}
+					}
+
+					&:hover {
+						.or-btn__inner {
+							background: darken($color, $colorPercentageBtnHover);
+						}
+					}
+
+					&:active {
+						box-shadow: none;
+
+						.or-btn__inner {
+							background: darken($color, $colorPercentageBtnActive);
+						}
+					}
+				}
+			}
+		}
+
+		// IMAGE
+		.pop-img{
+			position: absolute;
+			top: -10px;
+			right: -30px;
+		}
+
+		// FLEX SETTINGS
+		.flex {
+			display: flex;
+
+			&.flex-direction {
+				&--row {
+					flex-direction: row;
+				}
+
+				&--column {
+					flex-direction: column;
+				}
+			}
+
+			&.flex-wrap {
+				&--wrap {
+					flex-wrap: wrap;
+				}
+
+				&--nowrap {
+					flex-wrap: nowrap;
+				}
+			}
+
+			&.justify-content {
+				&--flex-start {
+					justify-content: flex-start;
+				}
+
+				&--flex-end {
+					justify-content: flex-end;
+				}
+
+				&--center {
+					justify-content: center;
+				}
+
+				&--space-between {
+					justify-content: space-between;
+				}
+
+				&--space-around {
+					justify-content: space-around;
+				}
+			}
+
+			&.align-items {
+				&--flex-start {
+					align-items: flex-start;
+				}
+
+				&--flex-end {
+					align-items: flex-end;
+				}
+
+				&--center {
+					align-items: center;
+				}
+
+				&--baseline {
+					align-items: baseline;
+				}
+
+				&--stretch {
+					align-items: stretch;
+				}
+			}
+
+			&.align-content {
+				&--flex-start {
+					align-content: flex-start;
+				}
+
+				&--flex-end {
+					align-content: flex-end;
+				}
+
+				&--center {
+					align-content: center;
+				}
+
+				&--space-between {
+					align-content: space-between;
+				}
+
+				&--space-around {
+					align-content: space-around;
+				}
+
+				&--stretch {
+					align-content: stretch;
+				}
+			}
+		}
+	}
+}
